@@ -16,7 +16,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioDao usuarioDao;
 
-    @RequestMapping(value = "usuario/{id}")
+    /*@RequestMapping(value = "usuario/{id}")
     public Usuario getUsuario(@PathVariable Long id){
         Usuario usuario = new Usuario();
         usuario.setId(id);
@@ -25,14 +25,14 @@ public class UsuarioController {
         usuario.setTelefono("87289010");
         usuario.setEmail("juanro30@gmail.com");
         return usuario;
-    }
+    }*/
 
     @RequestMapping(value = "usuarios")
     public List<Usuario> getUsuarios(){
         return usuarioDao.getUsuarios();
     }
 
-    @RequestMapping(value = "usuario1")
+    /*@RequestMapping(value = "usuario1")
     public Usuario editar(){
         Usuario usuario = new Usuario();
         usuario.setNombre("Juan");
@@ -60,5 +60,5 @@ public class UsuarioController {
         usuario.setTelefono("87289010");
         usuario.setEmail("juanro30@gmail.com");
         return usuario;
-    }
+    }*/
 }
