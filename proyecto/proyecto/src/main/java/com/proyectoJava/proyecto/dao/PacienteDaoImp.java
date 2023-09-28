@@ -1,6 +1,8 @@
 package com.proyectoJava.proyecto.dao;
 
+import com.proyectoJava.proyecto.models.Expediente;
 import com.proyectoJava.proyecto.models.Paciente;
+import com.proyectoJava.proyecto.models.Persona;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,15 +18,22 @@ public class PacienteDaoImp implements PacienteDao {
     EntityManager entityManager;
 
     @Override
-    public Paciente getById(Integer cedula) {
-        return null;
+    public Paciente getPaciente(Integer cedula) {
+        return entityManager.find(Paciente.class, cedula);
     }
 
     @Override
-    @Transactional
     public List<Paciente> getPacientes() {
         String query = "FROM Paciente";
-        return entityManager.createQuery(query).getResultList();
+        return entityManager.createQuery(query, Paciente.class).getResultList();
+    }
+
+    @Override
+    public List<Expediente> getPacienteExpediente(Integer cedula) {
+        String query = "SELECT e FROM Expediente e WHERE e.paciente.cedula = :cedula";
+        return entityManager.createQuery(query, Expediente.class)
+                .setParameter("cedula", cedula)
+                .getResultList();
     }
 
     @Override

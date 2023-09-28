@@ -14,7 +14,7 @@ public class Persona {
 
     @Id
     @Column(name = "cedula")
-    private int cedula;
+    private Integer cedula;
 
     @Column(name = "nombre")
     private String nombre;

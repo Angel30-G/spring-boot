@@ -1,6 +1,7 @@
 package com.proyectoJava.proyecto.dao;
 
 import com.proyectoJava.proyecto.models.Medico;
+import com.proyectoJava.proyecto.models.Paciente;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,15 +17,15 @@ public class MedicoDaoImp implements MedicoDao {
     EntityManager entityManager;
 
     @Override
-    public Medico getById(Integer cedula) {
-        return null;
+    public Medico getMedico(Integer cedula) {
+        return entityManager.find(Medico.class, cedula);
     }
 
     @Override
     @Transactional
     public List<Medico> getMedicos() {
         String query = "FROM Medico";
-        return entityManager.createQuery(query).getResultList();
+        return entityManager.createQuery(query, Medico.class).getResultList();
     }
 
     @Override

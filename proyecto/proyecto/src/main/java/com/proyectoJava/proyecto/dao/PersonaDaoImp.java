@@ -17,12 +17,11 @@ public class PersonaDaoImp implements PersonaDao {
     EntityManager entityManager;
 
     @Override
-    public Persona getById(Integer cedula) {
-        return null;
+    public Persona getPersona(Integer cedula) {
+        return entityManager.find(Persona.class, cedula);
     }
 
     @Override
-    @Transactional
     public List<Persona> getPersonas() {
         String query = "FROM Persona";
         return entityManager.createQuery(query,Persona.class).getResultList();

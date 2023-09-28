@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PersonaDao {
 
-    Persona getById(Integer cedula);
+    Persona getPersona(Integer cedula);
 
     List<Persona> getPersonas();
 

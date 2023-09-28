@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MedicoDao {
 
-    Medico getById(Integer cedula);
+    Medico getMedico(Integer cedula);
 
     List<Medico> getMedicos();
 
