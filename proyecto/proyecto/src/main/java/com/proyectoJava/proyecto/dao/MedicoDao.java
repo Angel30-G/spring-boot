@@ -14,4 +14,3 @@ public interface MedicoDao {
 
     void eliminar(Integer cedula);
 }
-

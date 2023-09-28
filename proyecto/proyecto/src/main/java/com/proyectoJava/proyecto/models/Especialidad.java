@@ -20,7 +20,4 @@ public class Especialidad {
     @Getter @Setter @Column(name = "nombre")
     private String nombre;
 
-    /*@OneToMany(mappedBy = "especialidad")
-    @Getter @Setter
-    private List<Medico> medicos;//Lista de medicos que tienen esta especialidad*/
 }

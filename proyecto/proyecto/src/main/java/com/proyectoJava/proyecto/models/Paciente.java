@@ -17,12 +17,9 @@ public class Paciente extends Persona {
     private String contrasena;
 
     @ManyToOne
-    @JoinColumn(name = "id_medico")
+    @JoinColumn(name = "medico_cabecera")
     @Getter @Setter
     private Medico medico_cabecera;
 
-    /*@OneToMany(mappedBy = "paciente")
-    @Getter @Setter
-    private List<Expediente> expedientes;*/
 
 }

@@ -1,6 +1,7 @@
 package com.proyectoJava.proyecto.dao;
 
 import com.proyectoJava.proyecto.models.Persona;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +25,7 @@ public class PersonaDaoImp implements PersonaDao {
     @Transactional
     public List<Persona> getPersonas() {
         String query = "FROM Persona";
-        return entityManager.createQuery(query).getResultList();
+        return entityManager.createQuery(query,Persona.class).getResultList();
     }
 
     @Override
