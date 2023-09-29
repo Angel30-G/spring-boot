@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 06:37 AM
+-- Generation Time: Sep 29, 2023 at 07:32 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,47 @@ SET time_zone = "+00:00";
 --
 -- Database: `hospital`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cita_agendada`
+--
+
+CREATE TABLE `cita_agendada` (
+  `id_cita` int(11) NOT NULL,
+  `cedula` int(11) NOT NULL,
+  `id_medico` int(11) NOT NULL,
+  `fecha_hora` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `cita_agendada`
+--
+
+INSERT INTO `cita_agendada` (`id_cita`, `cedula`, `id_medico`, `fecha_hora`) VALUES
+(1, 117790909, 111111111, '2023-10-06 10:00:00'),
+(2, 117790909, 111111111, '2023-10-13 07:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cita_disponible`
+--
+
+CREATE TABLE `cita_disponible` (
+  `id_cita_disponible` int(11) NOT NULL,
+  `id_medico` int(11) NOT NULL,
+  `fecha_hora` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `cita_disponible`
+--
+
+INSERT INTO `cita_disponible` (`id_cita_disponible`, `id_medico`, `fecha_hora`) VALUES
+(1, 111111111, '2023-09-29 10:00:00'),
+(2, 111111111, '2023-09-30 12:00:00');
 
 -- --------------------------------------------------------
 
@@ -147,6 +188,21 @@ INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `passwor
 --
 
 --
+-- Indexes for table `cita_agendada`
+--
+ALTER TABLE `cita_agendada`
+  ADD PRIMARY KEY (`id_cita`),
+  ADD KEY `cedula` (`cedula`),
+  ADD KEY `id_medico` (`id_medico`);
+
+--
+-- Indexes for table `cita_disponible`
+--
+ALTER TABLE `cita_disponible`
+  ADD PRIMARY KEY (`id_cita_disponible`),
+  ADD KEY `id_medico` (`id_medico`);
+
+--
 -- Indexes for table `especialidad`
 --
 ALTER TABLE `especialidad`
@@ -192,6 +248,18 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT for table `cita_agendada`
+--
+ALTER TABLE `cita_agendada`
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `cita_disponible`
+--
+ALTER TABLE `cita_disponible`
+  MODIFY `id_cita_disponible` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `especialidad`
 --
 ALTER TABLE `especialidad`
@@ -212,6 +280,19 @@ ALTER TABLE `usuario`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `cita_agendada`
+--
+ALTER TABLE `cita_agendada`
+  ADD CONSTRAINT `cita_agendada_ibfk_1` FOREIGN KEY (`id_medico`) REFERENCES `medico` (`cedula`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `cita_agendada_ibfk_2` FOREIGN KEY (`cedula`) REFERENCES `paciente` (`cedula`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `cita_disponible`
+--
+ALTER TABLE `cita_disponible`
+  ADD CONSTRAINT `cita_disponible_ibfk_1` FOREIGN KEY (`id_medico`) REFERENCES `medico` (`cedula`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `expediente`
