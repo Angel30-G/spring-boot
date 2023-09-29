@@ -22,7 +22,6 @@ public class MedicoDaoImp implements MedicoDao {
     }
 
     @Override
-    @Transactional
     public List<Medico> getMedicos() {
         String query = "FROM Medico";
         return entityManager.createQuery(query, Medico.class).getResultList();

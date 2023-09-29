@@ -9,28 +9,29 @@ import javax.persistence.*;
 @Entity
 @Table(name = "expediente")
 @ToString
+@Getter
+@Setter
 public class Expediente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter @Column(name = "id_expediente")
+    @Column(name = "id_expediente")
     private Integer id_expediente;
 
     @ManyToOne
     @JoinColumn(name = "cedula")
-    @Getter @Setter
     private Paciente paciente;
 
-    @Getter @Setter @Column(name = "fecha")
-    private java.sql.Date fecha;
+    @Column(name = "fecha")
+    private java.time.LocalDate fecha;
 
-    @Getter @Setter @Column(name = "padecimiento")
+    @Column(name = "padecimiento")
     private String padecimiento;
 
-    @Getter @Setter @Column(name = "procedimiento")
+    @Column(name = "procedimiento")
     private String procedimiento;
 
-    @Getter @Setter @Column(name = "medicamentos")
+    @Column(name = "medicamentos")
     private String medicamentos;
 
 }

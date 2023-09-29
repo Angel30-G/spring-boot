@@ -10,14 +10,18 @@ import java.util.List;
 
 @Entity
 @Table(name = "especialidad")
-@ToString @EqualsAndHashCode
+@ToString
+@EqualsAndHashCode
+@Getter
+@Setter
 public class Especialidad {
 
     @Id
-    @Getter @Setter @Column(name = "id_especialidad")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_especialidad")
     private Integer id_especialidad;
 
-    @Getter @Setter @Column(name = "nombre")
+    @Column(name = "nombre")
     private String nombre;
 
 }
