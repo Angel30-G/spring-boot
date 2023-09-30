@@ -20,12 +20,14 @@ async function cargarCitasDisponiblesMG(){
   for (let cita of citasdisponibles) {
     let medicoNombre = cita.medico.nombre;
     let especialidadNombre = cita.medico.especialidad.nombre;
-    let fechaHora = cita.fecha_hora;
+    let fecha = cita.fecha;
+    let hora = cita.hora;
 
     let citadisponibleHtml = '<tr>' +
       '<td>' + medicoNombre + '</td>' +
       '<td>' + especialidadNombre + '</td>' +
-      '<td>' + fechaHora + '</td>' +
+      '<td>' + fecha + '</td>' +
+      '<td>' + hora + '</td>' +
       '</tr>';
 
     listadoHtml += citadisponibleHtml;

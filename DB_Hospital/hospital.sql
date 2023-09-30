@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 07:32 PM
+-- Generation Time: Sep 30, 2023 at 11:54 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,16 +31,17 @@ CREATE TABLE `cita_agendada` (
   `id_cita` int(11) NOT NULL,
   `cedula` int(11) NOT NULL,
   `id_medico` int(11) NOT NULL,
-  `fecha_hora` datetime NOT NULL
+  `fecha` date DEFAULT NULL,
+  `hora` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `cita_agendada`
 --
 
-INSERT INTO `cita_agendada` (`id_cita`, `cedula`, `id_medico`, `fecha_hora`) VALUES
-(1, 117790909, 111111111, '2023-10-06 10:00:00'),
-(2, 117790909, 111111111, '2023-10-13 07:00:00');
+INSERT INTO `cita_agendada` (`id_cita`, `cedula`, `id_medico`, `fecha`, `hora`) VALUES
+(1, 117790909, 111111111, '2023-10-20', '15:30:00'),
+(2, 117790909, 111111111, '2023-10-31', '05:30:00');
 
 -- --------------------------------------------------------
 
@@ -51,16 +52,17 @@ INSERT INTO `cita_agendada` (`id_cita`, `cedula`, `id_medico`, `fecha_hora`) VAL
 CREATE TABLE `cita_disponible` (
   `id_cita_disponible` int(11) NOT NULL,
   `id_medico` int(11) NOT NULL,
-  `fecha_hora` datetime NOT NULL
+  `fecha` date DEFAULT NULL,
+  `hora` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `cita_disponible`
 --
 
-INSERT INTO `cita_disponible` (`id_cita_disponible`, `id_medico`, `fecha_hora`) VALUES
-(1, 111111111, '2023-09-29 10:00:00'),
-(2, 111111111, '2023-09-30 12:00:00');
+INSERT INTO `cita_disponible` (`id_cita_disponible`, `id_medico`, `fecha`, `hora`) VALUES
+(1, 111111111, '2024-09-06', '15:30:00'),
+(2, 111111111, '2023-11-16', '07:00:00');
 
 -- --------------------------------------------------------
 
