@@ -8,30 +8,23 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cita_agendada")
+@Table(name = "cita_disponible")
 @ToString
 @Getter
 @Setter
 @EqualsAndHashCode
-public class CitaAgendada {
+public class CitaDisponible {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cita")
-    private Integer id_cita;
-
-    @ManyToOne
-    @JoinColumn(name="cedula")
-    private Paciente paciente;
+    @Column(name = "id_cita_disponible")
+    private Integer id_cita_disponible;
 
     @ManyToOne
     @JoinColumn(name="id_medico")
     private Medico medico;
 
-    @Column(name = "fecha")
-    private java.time.LocalDate fecha;
-
-    @Column(name = "hora")
-    private java.time.LocalTime hora;
+    @Column(name = "fecha_hora")
+    private java.time.LocalDateTime fecha_hora;
 
 }

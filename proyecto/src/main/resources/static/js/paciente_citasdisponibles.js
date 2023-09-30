@@ -28,7 +28,7 @@ async function cargarCitasDisponiblesMG(){
       '<td>' + especialidadNombre + '</td>' +
       '<td>' + fecha + '</td>' +
       '<td>' + hora + '</td>' +
-      '</tr>';
+      '<td><a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a></td></tr>';
 
     listadoHtml += citadisponibleHtml;
   }

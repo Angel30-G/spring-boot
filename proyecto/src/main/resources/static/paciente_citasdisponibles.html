@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Expediente</title>
+    <title>Citas</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -65,9 +65,21 @@
                 </a>
             </li>
 
+            
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="cita.html">
+                <a class="nav-link collapsed" href="agenda.html">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="paciente_citasdisponibles.html">
                     <i class="fa-solid fa-bed-pulse"></i>
                     <span>Agendar una Cita</span>
                 </a>
@@ -312,7 +324,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Expedientes</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Citas</h1>
                     <p class="mb-4">DataT <a target="_blank"
                             href="https://datatables.net">official DataTables documentation</a>.</p>
                         
@@ -320,23 +332,21 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tabla de Expedientes</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Tabla de Citas</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="expediente" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="paciente_citasdisponibles" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Cedula</th>
-                                            <th>Fecha</th>
-                                            <th>Padecimiento</th>
-                                            <th>Procedimiento</th>
-                                            <th>Medicamentos</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Medico</th>
+                                        <th>Especialidad</th>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                        <th>Acciones</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-
 
                                     </tbody>
                                 </table>
@@ -406,7 +416,7 @@
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/expediente.js"></script>
+    <script src="js/paciente_citasdisponibles.js"></script>
 
 </body>
 
