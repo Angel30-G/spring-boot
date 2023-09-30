@@ -1,10 +1,10 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-  cargarUsuarios();
+  cargarCitas();
   $('#cita').DataTable();
 });
 
-async function cargarUsuarios(){
+async function cargarCitas(){
 
   const request = await fetch('CitaAgendada', {
     method: 'GET',
@@ -13,10 +13,10 @@ async function cargarUsuarios(){
       'Content-Type': 'application/json'
     },
   });
-  const Cita = await request.json();
+  const CitaAgendada = await request.json();
 
   let listadoHtml = '';
-  for(let CitaAgendada of Cita){
+  for(let Cita of CitaAgendada){
 
     let citaHtml = '<tr><td>'
     +Cita.id_cita+'</td><td>'
@@ -29,3 +29,4 @@ async function cargarUsuarios(){
 
   document.querySelector('#doctores tbody').outerHTML = listadoHtml;
 
+}

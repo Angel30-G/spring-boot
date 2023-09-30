@@ -1,22 +1,22 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-  cargarUsuarios();
+  cargarExpedientes();
   $('#expediente').DataTable();
 });
 
-async function cargarUsuarios(){
+async function cargarExpedientes(){
 
-  const request = await fetch('Expediente', {
+  const request = await fetch('pacientes', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
   });
-  const expediente = await request.json();
+  const pacientes = await request.json();
 
   let listadoHtml = '';
-  for(let Expediente of expediente){
+  for(let Expediente of pacientes){
 
     let expedienteHtml = '<tr><td>'
     +Expediente.id_expediente+'</td><td>'
@@ -31,3 +31,4 @@ async function cargarUsuarios(){
 
   document.querySelector('#expediente tbody').outerHTML = listadoHtml;
 
+}
