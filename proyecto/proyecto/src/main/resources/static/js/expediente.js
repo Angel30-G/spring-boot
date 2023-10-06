@@ -1,7 +1,6 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
   cargarCitasDisponiblesMG();
-  $('#expediente').DataTable();
 });
 
 async function cargarCitasDisponiblesMG(){
@@ -38,5 +37,13 @@ async function cargarCitasDisponiblesMG(){
   }
 
   document.querySelector('#expediente tbody').outerHTML = listadoHtml;
+
+  // Inicializa la tabla después de que se haya cargado el contenido
+  var table = $('#expediente').DataTable();
+
+  // Agrega la funcionalidad de búsqueda a la tabla
+  $('#myInput').on('keyup', function() {
+    table.search(this.value).draw();
+  });
 
 }
