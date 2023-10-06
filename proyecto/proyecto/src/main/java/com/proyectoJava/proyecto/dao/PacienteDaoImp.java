@@ -1,8 +1,6 @@
 package com.proyectoJava.proyecto.dao;
 
-import com.proyectoJava.proyecto.models.Expediente;
-import com.proyectoJava.proyecto.models.Paciente;
-import com.proyectoJava.proyecto.models.Persona;
+import com.proyectoJava.proyecto.models.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,6 +43,20 @@ public class PacienteDaoImp implements PacienteDao {
     public void eliminar(Integer cedula) {
         Paciente paciente = entityManager.find(Paciente.class, cedula);
         entityManager.remove(paciente);
+    }
+
+    @Override
+    public List<CitaAgendada> citasAgendadas(Integer cedula){
+        String query = "SELECT ca FROM CitaAgendada ca WHERE ca.paciente.cedula = :cedula";
+        return entityManager.createQuery(query, CitaAgendada.class)
+                .setParameter("cedula", cedula)
+                .getResultList();
+    }
+
+    @Override
+    public List<CitaDisponible> citasDisponibles(){
+        String query = "SELECT cd FROM CitaDisponible cd WHERE cd.medico.especialidad.id_especialidad = 1";
+        return entityManager.createQuery(query, CitaDisponible.class).getResultList();
     }
 
 }

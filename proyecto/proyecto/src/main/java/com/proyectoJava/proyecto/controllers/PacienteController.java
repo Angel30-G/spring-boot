@@ -1,6 +1,8 @@
 package com.proyectoJava.proyecto.controllers;
 
 import com.proyectoJava.proyecto.dao.PacienteDao;
+import com.proyectoJava.proyecto.models.CitaAgendada;
+import com.proyectoJava.proyecto.models.CitaDisponible;
 import com.proyectoJava.proyecto.models.Expediente;
 import com.proyectoJava.proyecto.models.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +31,15 @@ public class PacienteController {
     @RequestMapping(value = "paciente/{cedula}/expediente")
     public List<Expediente> getPacienteExpediente(@PathVariable Integer cedula){
         return pacienteDao.getPacienteExpediente(cedula);
+    }
+
+    @RequestMapping(value = "paciente/{cedula}/agenda")
+    public List<CitaAgendada> citasAgendadas(@PathVariable Integer cedula){
+        return pacienteDao.citasAgendadas(cedula);
+    }
+
+    @RequestMapping(value = "paciente/citasdisponibles")
+    public List<CitaDisponible> citasDisponibles(){
+        return pacienteDao.citasDisponibles();
     }
 }

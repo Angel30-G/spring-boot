@@ -1,5 +1,7 @@
 package com.proyectoJava.proyecto.dao;
 
+import com.proyectoJava.proyecto.models.CitaAgendada;
+import com.proyectoJava.proyecto.models.CitaDisponible;
 import com.proyectoJava.proyecto.models.Expediente;
 import com.proyectoJava.proyecto.models.Paciente;
 
@@ -16,4 +18,8 @@ public interface PacienteDao {
     void guardar(Paciente paciente);
 
     void eliminar(Integer cedula);
+
+    List<CitaAgendada> citasAgendadas(Integer cedula);
+
+    List<CitaDisponible> citasDisponibles();
 }

@@ -1,6 +1,6 @@
 package com.proyectoJava.proyecto.dao;
 
-import com.proyectoJava.proyecto.models.Medico;
+import com.proyectoJava.proyecto.models.*;
 
 import java.util.List;
 
@@ -13,4 +13,10 @@ public interface MedicoDao {
     void guardar(Medico medico);
 
     void eliminar(Integer cedula);
+
+    List<CitaAgendada> getMedicoAgenda(Integer cedula);
+
+    List<Paciente> getMedicoPacientes(Integer cedula);
+
+    List<CitaDisponible> medicoCitasDisponibles();
 }

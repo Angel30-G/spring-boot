@@ -1,5 +1,7 @@
 package com.proyectoJava.proyecto.dao;
 
+import com.proyectoJava.proyecto.models.CitaAgendada;
+import com.proyectoJava.proyecto.models.CitaDisponible;
 import com.proyectoJava.proyecto.models.Medico;
 import com.proyectoJava.proyecto.models.Paciente;
 import org.springframework.stereotype.Repository;
@@ -36,6 +38,28 @@ public class MedicoDaoImp implements MedicoDao {
     public void eliminar(Integer cedula) {
         Medico medico = entityManager.find(Medico.class, cedula);
         entityManager.remove(medico);
+    }
+
+    @Override
+    public List<CitaAgendada> getMedicoAgenda(Integer cedula){
+        String query = "SELECT ca FROM CitaAgendada ca WHERE ca.medico.cedula = :cedula";
+        return entityManager.createQuery(query, CitaAgendada.class)
+                .setParameter("cedula", cedula)
+                .getResultList();
+    }
+
+    @Override
+    public List<Paciente> getMedicoPacientes(Integer cedula){
+        String query = "SELECT p FROM Paciente p WHERE p.medico_cabecera.cedula = :cedula";
+        return entityManager.createQuery(query, Paciente.class)
+                .setParameter("cedula", cedula)
+                .getResultList();
+    }
+
+    @Override
+    public List<CitaDisponible> medicoCitasDisponibles(){
+        String query = "FROM CitaDisponible";
+        return entityManager.createQuery(query, CitaDisponible.class).getResultList();
     }
 
 }

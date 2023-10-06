@@ -1,6 +1,8 @@
 package com.proyectoJava.proyecto.controllers;
 
 import com.proyectoJava.proyecto.dao.MedicoDao;
+import com.proyectoJava.proyecto.models.CitaAgendada;
+import com.proyectoJava.proyecto.models.CitaDisponible;
 import com.proyectoJava.proyecto.models.Medico;
 import com.proyectoJava.proyecto.models.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,22 @@ public class MedicoController {
     }
 
     @RequestMapping(value = "medicos")
-    public List<Medico> getMedico(){
+    public List<Medico> getMedicos(){
         return medicoDao.getMedicos();
+    }
+
+    @RequestMapping(value = "medico/{cedula}/agenda")
+    public List<CitaAgendada> getMedicoAgenda(@PathVariable Integer cedula){
+        return medicoDao.getMedicoAgenda(cedula);
+    }
+
+    @RequestMapping(value = "medico/{cedula}/pacientes")
+    public List<Paciente> getMedicoPacientes(@PathVariable Integer cedula){
+        return medicoDao.getMedicoPacientes(cedula);
+    }
+
+    @RequestMapping(value = "medico/citasdisponibles")
+    public List<CitaDisponible> citasDisponibles(){
+        return medicoDao.medicoCitasDisponibles();
     }
 }
