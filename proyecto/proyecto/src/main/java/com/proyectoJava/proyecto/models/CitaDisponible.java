@@ -21,10 +21,12 @@ public class CitaDisponible {
     private Integer id_cita_disponible;
 
     @ManyToOne
-    @JoinColumn(name="id_medico")
+    @JoinColumn(name = "id_medico")
     private Medico medico;
 
-    @Column(name = "fecha_hora")
-    private java.time.LocalDateTime fecha_hora;
+    @Column(name = "fecha")
+    private java.time.LocalDate fecha;
 
+    @Column(name = "hora")
+    private java.time.LocalTime hora;
 }
