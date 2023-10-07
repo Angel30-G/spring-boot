@@ -20,5 +20,5 @@ public interface MedicoDao {
 
     List<CitaDisponible> medicoCitasDisponibles();
 
-    boolean iniciarSesionMedico(Integer cedula, Integer contrasena);
+    boolean iniciarSesionMedico(Integer cedula, String contrasena);
 }

@@ -6,12 +6,10 @@ import com.proyectoJava.proyecto.models.CitaDisponible;
 import com.proyectoJava.proyecto.models.Medico;
 import com.proyectoJava.proyecto.models.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class MedicoController {
@@ -45,9 +43,11 @@ public class MedicoController {
     }
 
 
-    @RequestMapping(value = "login/medico/{cedula}/{contrasena}", method = RequestMethod.POST)
-    public boolean iniciarSesionMedico(@PathVariable Integer cedula, @PathVariable Integer contrasena){
-        return medicoDao.iniciarSesionMedico(cedula, contrasena);
+    @RequestMapping(value = "login/medico", method = RequestMethod.POST)
+    public boolean iniciarSesionMedico(@RequestBody Map<String, String> datosInicioSesion){
+        Integer cedula = Integer.parseInt(datosInicioSesion.get("cedula"));
+        String contrasena = datosInicioSesion.get("contrasena");
 
+        return medicoDao.iniciarSesionMedico(cedula, contrasena);
     }
 }
