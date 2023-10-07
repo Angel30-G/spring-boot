@@ -19,4 +19,6 @@ public interface MedicoDao {
     List<Paciente> getMedicoPacientes(Integer cedula);
 
     List<CitaDisponible> medicoCitasDisponibles();
+
+    boolean iniciarSesionMedico(Integer cedula, Integer contrasena);
 }

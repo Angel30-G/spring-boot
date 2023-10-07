@@ -43,4 +43,11 @@ public class MedicoController {
     public List<CitaDisponible> citasDisponibles(){
         return medicoDao.medicoCitasDisponibles();
     }
+
+
+    @RequestMapping(value = "login/medico/{cedula}/{contrasena}", method = RequestMethod.POST)
+    public boolean iniciarSesionMedico(@PathVariable Integer cedula, @PathVariable Integer contrasena){
+        return medicoDao.iniciarSesionMedico(cedula, contrasena);
+
+    }
 }

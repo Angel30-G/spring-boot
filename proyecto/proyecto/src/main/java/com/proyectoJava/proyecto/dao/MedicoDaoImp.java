@@ -1,9 +1,6 @@
 package com.proyectoJava.proyecto.dao;
 
-import com.proyectoJava.proyecto.models.CitaAgendada;
-import com.proyectoJava.proyecto.models.CitaDisponible;
-import com.proyectoJava.proyecto.models.Medico;
-import com.proyectoJava.proyecto.models.Paciente;
+import com.proyectoJava.proyecto.models.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +57,22 @@ public class MedicoDaoImp implements MedicoDao {
     public List<CitaDisponible> medicoCitasDisponibles(){
         String query = "FROM CitaDisponible";
         return entityManager.createQuery(query, CitaDisponible.class).getResultList();
+    }
+
+    @Override
+    public boolean iniciarSesionMedico(Integer cedula, Integer contrasena) {
+        Medico medico = entityManager.find(Medico.class, cedula);
+        if (medico == null){
+            return false;
+        } else{
+            if(medico.getContrasena() == contrasena){
+                UsuarioActivo.setCedula(cedula);
+                return true;
+            }
+
+            return false;
+
+        }
     }
 
 }
