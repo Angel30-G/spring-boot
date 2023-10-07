@@ -6,7 +6,7 @@ import lombok.Setter;
 
 public abstract class UsuarioActivo {
 
-    private static Integer cedula;
+    private static Integer cedula = 117790909;
     
     public static Integer getCedula() {
         return cedula;
