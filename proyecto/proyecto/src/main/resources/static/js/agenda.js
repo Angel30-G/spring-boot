@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 async function verAgenda(){
 
-  const request = await fetch('paciente/117790909/agenda', {
+  const request = await fetch('paciente/agenda', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',

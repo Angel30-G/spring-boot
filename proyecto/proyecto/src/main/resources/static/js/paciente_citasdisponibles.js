@@ -52,7 +52,7 @@ async function cargarCitasDisponiblesMG(){
 }
 
 async function sacarCita(cedula, id_cita_disponible) {
-    const request = await fetch('paciente/' + cedula +'/' + id_cita_disponible + '/sacarcita', {
+    const request = await fetch('paciente/' + id_cita_disponible + '/sacarcita', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

@@ -1,10 +1,7 @@
 package com.proyectoJava.proyecto.controllers;
 
 import com.proyectoJava.proyecto.dao.PacienteDao;
-import com.proyectoJava.proyecto.models.CitaAgendada;
-import com.proyectoJava.proyecto.models.CitaDisponible;
-import com.proyectoJava.proyecto.models.Expediente;
-import com.proyectoJava.proyecto.models.Paciente;
+import com.proyectoJava.proyecto.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,14 +27,14 @@ public class PacienteController {
         return pacienteDao.getPacientes();
     }
 
-    @RequestMapping(value = "paciente/{cedula}/expediente", method = RequestMethod.GET)
-    public List<Expediente> getPacienteExpediente(@PathVariable Integer cedula){
-        return pacienteDao.getPacienteExpediente(cedula);
+    @RequestMapping(value = "paciente/expediente")
+    public List<Expediente> getPacienteExpediente(){
+        return pacienteDao.getPacienteExpediente(UsuarioActivo.getCedula());
     }
 
-    @RequestMapping(value = "paciente/{cedula}/agenda", method = RequestMethod.GET)
-    public List<CitaAgendada> citasAgendadas(@PathVariable Integer cedula){
-        return pacienteDao.citasAgendadas(cedula);
+    @RequestMapping(value = "paciente/agenda")
+    public List<CitaAgendada> citasAgendadas(){
+        return pacienteDao.citasAgendadas(UsuarioActivo.getCedula());
     }
 
     @RequestMapping(value = "paciente/citasdisponibles")
@@ -46,9 +43,9 @@ public class PacienteController {
     }
 
     /****** Funciones *********/
-    @RequestMapping(value = "/paciente/{cedula}/{id_cita_disponible}/sacarcita", method = RequestMethod.POST)
-    public void sacarCita(@PathVariable Integer cedula, @PathVariable Integer id_cita_disponible) {
-        pacienteDao.sacarCita(cedula, id_cita_disponible);
+    @RequestMapping(value = "/paciente/{id_cita_disponible}/sacarcita", method = RequestMethod.POST)
+    public void sacarCita(@PathVariable Integer id_cita_disponible) {
+        pacienteDao.sacarCita(UsuarioActivo.getCedula(), id_cita_disponible);
     }
 
 }

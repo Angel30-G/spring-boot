@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 async function cargarCitasDisponiblesMG(){
 
-  const request = await fetch('paciente/117790909/expediente', {
+  const request = await fetch('paciente/expediente', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
