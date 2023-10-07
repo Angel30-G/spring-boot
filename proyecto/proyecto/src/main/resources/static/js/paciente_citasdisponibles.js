@@ -5,6 +5,11 @@ $(document).ready(function() {
 
 async function cargarCitasDisponiblesMG(){
 
+  // Destruye la tabla existente
+  if ($.fn.DataTable.isDataTable('#paciente_citasdisponibles')) {
+    $('#paciente_citasdisponibles').DataTable().destroy();
+  }
+
   const request = await fetch('paciente/citasdisponibles', {
     method: 'GET',
     headers: {
@@ -21,13 +26,15 @@ async function cargarCitasDisponiblesMG(){
     let especialidadNombre = cita.medico.especialidad.nombre;
     let fecha = cita.fecha;
     let hora = cita.hora;
+    let botonEliminar = '<a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+    let botonAgendar = '<a href="#" onclick="sacarCita(117790909, ' + cita.id_cita_disponible + ')" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a>';
 
     let citadisponibleHtml = '<tr>' +
       '<td>' + medicoNombre + '</td>' +
       '<td>' + especialidadNombre + '</td>' +
       '<td>' + fecha + '</td>' +
       '<td>' + hora + '</td>' +
-      '<td><a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a></td></tr>';
+      '<td>' + botonAgendar + '&nbsp;' + botonEliminar + '</td></tr>';
 
     listadoHtml += citadisponibleHtml;
   }
@@ -41,4 +48,17 @@ async function cargarCitasDisponiblesMG(){
   $('#myInput').on('keyup', function() {
     table.search(this.value).draw();
   });
+
+}
+
+async function sacarCita(cedula, id_cita_disponible) {
+    const request = await fetch('paciente/' + cedula +'/' + id_cita_disponible + '/sacarcita', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      });
+    cargarCitasDisponiblesMG();
+    alert("Cita Agendada Correctamente.");
 }

@@ -59,4 +59,21 @@ public class PacienteDaoImp implements PacienteDao {
         return entityManager.createQuery(query, CitaDisponible.class).getResultList();
     }
 
+    @Override
+    public void sacarCita(Integer cedula, Integer id_cita_disponible) {
+        Paciente paciente = entityManager.find(Paciente.class, cedula);
+        CitaDisponible citaDisponible = entityManager.find(CitaDisponible.class, id_cita_disponible);
+
+        CitaAgendada citaAgendada = new CitaAgendada();
+
+        citaAgendada.setPaciente(paciente);
+        citaAgendada.setMedico(citaDisponible.getMedico());
+        citaAgendada.setFecha(citaDisponible.getFecha());
+        citaAgendada.setHora(citaDisponible.getHora());
+
+        entityManager.merge(citaAgendada);
+        entityManager.remove(citaDisponible);
+
+    }
+
 }

@@ -22,4 +22,6 @@ public interface PacienteDao {
     List<CitaAgendada> citasAgendadas(Integer cedula);
 
     List<CitaDisponible> citasDisponibles();
+
+    void sacarCita(Integer cedula, Integer id_cita_disponible);
 }
