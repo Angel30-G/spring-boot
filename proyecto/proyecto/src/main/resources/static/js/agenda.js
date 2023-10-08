@@ -4,6 +4,11 @@ $(document).ready(function() {
 
 async function verAgenda(){
 
+  // Destruye la tabla existente
+  if ($.fn.DataTable.isDataTable('#agenda')) {
+    $('#agenda').DataTable().destroy();
+  }
+
   const request = await fetch('paciente/agenda', {
     method: 'GET',
     headers: {
@@ -28,7 +33,7 @@ async function verAgenda(){
       '<td>' + medico + '</td>' +
       '<td>' + fecha + '</td>' +
       '<td>' + hora + '</td>' +
-      '<td><a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a></td></tr>';
+      '<td><a href="#" onclick="cancelarCita(' + idCita + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a></td></tr>';
 
     listadoHtml += agendaHtml;
   }
@@ -43,4 +48,16 @@ async function verAgenda(){
     table.search(this.value).draw();
   });
 
+}
+
+async function cancelarCita(id_cita) {
+    const request = await fetch('paciente/' + id_cita + '/cancelarcita', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      });
+    verAgenda();
+    alert("Cita Cancelada Correctamente.");
 }

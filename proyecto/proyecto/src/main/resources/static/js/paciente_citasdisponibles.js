@@ -27,7 +27,7 @@ async function cargarCitasDisponiblesMG(){
     let fecha = cita.fecha;
     let hora = cita.hora;
     let botonEliminar = '<a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
-    let botonAgendar = '<a href="#" onclick="sacarCita(117790909, ' + cita.id_cita_disponible + ')" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a>';
+    let botonAgendar = '<a href="#" onclick="sacarCita(' + cita.id_cita_disponible + ')" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a>';
 
     let citadisponibleHtml = '<tr>' +
       '<td>' + medicoNombre + '</td>' +
@@ -51,7 +51,7 @@ async function cargarCitasDisponiblesMG(){
 
 }
 
-async function sacarCita(cedula, id_cita_disponible) {
+async function sacarCita(id_cita_disponible) {
     const request = await fetch('paciente/' + id_cita_disponible + '/sacarcita', {
         method: 'POST',
         headers: {

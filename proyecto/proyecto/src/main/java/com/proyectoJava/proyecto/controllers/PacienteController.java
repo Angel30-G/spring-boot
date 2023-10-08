@@ -46,6 +46,11 @@ public class PacienteController {
         pacienteDao.sacarCita(UsuarioActivo.getCedula(), id_cita_disponible);
     }
 
+    @RequestMapping(value = "/paciente/{id_cita}/cancelarcita", method = RequestMethod.POST)
+    public void cancelarCita(@PathVariable Integer id_cita) {
+        pacienteDao.cancelarCita(id_cita);
+    }
+
     @RequestMapping(value = "login/paciente")
     public boolean iniciarSesionPaciente(@RequestBody Map<String, String> datosInicioSesion){
         Integer cedula = Integer.parseInt(datosInicioSesion.get("cedula"));

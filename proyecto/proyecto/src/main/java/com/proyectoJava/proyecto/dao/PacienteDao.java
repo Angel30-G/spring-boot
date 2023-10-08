@@ -25,5 +25,7 @@ public interface PacienteDao {
 
     void sacarCita(Integer cedula, Integer id_cita_disponible);
 
+    void cancelarCita(Integer id_cita);
+
     boolean iniciarSesionPaciente(Integer cedula, String contrasena);
 }

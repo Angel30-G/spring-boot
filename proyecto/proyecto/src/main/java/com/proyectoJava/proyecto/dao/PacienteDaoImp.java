@@ -77,6 +77,19 @@ public class PacienteDaoImp implements PacienteDao {
     }
 
     @Override
+    public void cancelarCita(Integer id_cita) {
+        CitaAgendada citaAgendada = entityManager.find(CitaAgendada.class, id_cita);
+
+        CitaDisponible citaDisponible = new CitaDisponible();
+        citaDisponible.setMedico(citaAgendada.getMedico());
+        citaDisponible.setFecha(citaAgendada.getFecha());
+        citaDisponible.setHora(citaAgendada.getHora());
+
+        entityManager.merge(citaDisponible);
+        entityManager.remove(citaAgendada);
+    }
+
+    @Override
     public boolean iniciarSesionPaciente(Integer cedula, String contrasena) {
         Paciente paciente = entityManager.find(Paciente.class, cedula);
         if (paciente == null){
