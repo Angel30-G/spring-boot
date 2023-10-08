@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Citas</title>
+    <title>Agenda</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -35,7 +35,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="medico.html">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fa-solid fa-hospital"></i>
             </div>
@@ -60,10 +60,9 @@
         </div>
 
 
-
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="agendaM.html">
+            <a class="nav-link collapsed" href="agendamedico.html">
                 <i class="fa-regular fa-calendar-days"></i>
                 <span>Agenda</span>
             </a>
@@ -74,14 +73,21 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item active">
-            <a class="nav-link collapsed" href="paciente_citasdisponibles_M.html">
+            <a class="nav-link collapsed" href="medico_citasdisponibles.html">
                 <i class="fa-solid fa-bed-pulse"></i>
-                <span>Agendar una Cita</span>
+                <span>Referir Paciente</span>
             </a>
         </li>
 
 
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="mis_pacientes.html">
+                <i class="fa-solid fa-hospital-user"></i>
+                <span>Mis Pacientes</span>
+            </a>
 
+        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -92,7 +98,7 @@
         </div>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pacientesM.html">
+            <a class="nav-link collapsed" href="m_pacientes.html">
                 <i class="fa-solid fa-clipboard-list"></i>
                 <span>Lista de Pacientes</span>
             </a>
@@ -101,6 +107,15 @@
             </div>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="m_doctores.html">
+                <i class="fa-solid fa-list-check"></i>
+                <span>Lista de Medicos</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+
+            </div>
+        </li>
 
 
 
@@ -139,11 +154,12 @@
                 </form>
 
                 <!-- Topbar Search -->
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
+
                     </div>
                 </form>
-
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -343,7 +359,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="paciente_citasdisponibles" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="medico_citasdisponibles" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
                                     <th>Medico</th>
@@ -354,6 +370,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
 
                                 </tbody>
                             </table>
@@ -423,7 +440,7 @@
 <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="js/paciente_citasdisponibles.js"></script>
+<script src="js/agenda.js"></script>
 
 </body>
 

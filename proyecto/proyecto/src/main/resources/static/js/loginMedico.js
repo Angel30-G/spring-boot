@@ -24,7 +24,7 @@ async function iniciarSesion(){
   const respuesta = await request.text();
 
   if(respuesta === 'true'){
-    window.location.href = 'index.html';
+    window.location.href = 'medico.html';
   } else {
     alert("La contraseña es incorrecta, intente de nuevo");
   }
