@@ -3,12 +3,10 @@ package com.proyectoJava.proyecto.controllers;
 import com.proyectoJava.proyecto.dao.PacienteDao;
 import com.proyectoJava.proyecto.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PacienteController {
@@ -46,6 +44,14 @@ public class PacienteController {
     @RequestMapping(value = "/paciente/{id_cita_disponible}/sacarcita", method = RequestMethod.POST)
     public void sacarCita(@PathVariable Integer id_cita_disponible) {
         pacienteDao.sacarCita(UsuarioActivo.getCedula(), id_cita_disponible);
+    }
+
+    @RequestMapping(value = "login/paciente")
+    public boolean iniciarSesionPaciente(@RequestBody Map<String, String> datosInicioSesion){
+        Integer cedula = Integer.parseInt(datosInicioSesion.get("cedula"));
+        String contrasena = datosInicioSesion.get("contrasena");
+
+        return pacienteDao.iniciarSesionPaciente(cedula, contrasena);
     }
 
 }

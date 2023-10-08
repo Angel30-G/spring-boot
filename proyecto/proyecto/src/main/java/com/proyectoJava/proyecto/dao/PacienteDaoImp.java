@@ -76,4 +76,20 @@ public class PacienteDaoImp implements PacienteDao {
 
     }
 
+    @Override
+    public boolean iniciarSesionPaciente(Integer cedula, String contrasena) {
+        Paciente paciente = entityManager.find(Paciente.class, cedula);
+        System.out.println(paciente.getContrasena());
+        System.out.println(contrasena);
+        if (paciente == null){
+            return false;
+        } else{
+            if(paciente.getContrasena().equals(contrasena)){
+                UsuarioActivo.setCedula(cedula);
+                return true;
+            }
+            return false;
+        }
+    }
+
 }

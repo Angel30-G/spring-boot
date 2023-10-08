@@ -24,4 +24,6 @@ public interface PacienteDao {
     List<CitaDisponible> citasDisponibles();
 
     void sacarCita(Integer cedula, Integer id_cita_disponible);
+
+    boolean iniciarSesionPaciente(Integer cedula, String contrasena);
 }

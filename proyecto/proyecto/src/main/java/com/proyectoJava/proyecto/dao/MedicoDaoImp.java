@@ -67,15 +67,11 @@ public class MedicoDaoImp implements MedicoDao {
         if (medico == null){
             return false;
         } else{
-            System.out.println("La cedula funciona");
             if(medico.getContrasena().equals(contrasena)){
-                System.out.println("La contraseña funciona");
                 UsuarioActivo.setCedula(cedula);
                 return true;
             }
-
             return false;
-
         }
     }
 
