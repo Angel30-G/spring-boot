@@ -62,8 +62,6 @@ public class MedicoDaoImp implements MedicoDao {
     @Override
     public boolean iniciarSesionMedico(Integer cedula, String contrasena) {
         Medico medico = entityManager.find(Medico.class, cedula);
-        System.out.println(medico.getContrasena());
-        System.out.println(contrasena);
         if (medico == null){
             return false;
         } else{
