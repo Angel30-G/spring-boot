@@ -21,4 +21,8 @@ public interface MedicoDao {
     List<CitaDisponible> medicoCitasDisponibles();
 
     boolean iniciarSesionMedico(Integer cedula, String contrasena);
+
+    boolean referirPaciente(Integer cedula, Integer idCitaDisponible);
+
+    void escribirExpediente(Integer idCita, String padecimiento, String procedimiento, String medicamentos);
 }

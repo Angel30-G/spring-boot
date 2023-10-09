@@ -2,7 +2,14 @@ $(document).ready(function() {
   verAgenda();
 });
 
+let id_cita_global;
+
 async function verAgenda(){
+
+  // Destruye la tabla existente
+  if ($.fn.DataTable.isDataTable('#agendamedico')) {
+    $('#agendamedico').DataTable().destroy();
+  }
 
   const request = await fetch('medico/agenda', {
     method: 'GET',
@@ -21,6 +28,8 @@ async function verAgenda(){
     let medico = CitaAgendada.medico.nombre + " " + CitaAgendada.medico.apellido;
     let fecha = CitaAgendada.fecha;
     let hora = CitaAgendada.hora;
+    let botonEliminar = '<a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+    let botonExpediente = '<a href="#" onclick="escribirExpediente(' + idCita + ')" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a>';
 
     let agendaHtml = '<tr>' +
       '<td>' + idCita + '</td>' +
@@ -28,7 +37,7 @@ async function verAgenda(){
       '<td>' + medico + '</td>' +
       '<td>' + fecha + '</td>' +
       '<td>' + hora + '</td>' +
-      '<td><a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a></td></tr>';
+      '<td>' + botonExpediente + '&nbsp;' + botonEliminar + '</td></tr>';
 
     listadoHtml += agendaHtml;
   }
@@ -43,4 +52,38 @@ async function verAgenda(){
     table.search(this.value).draw();
   });
 
+}
+
+async function escribirExpediente(idCita) {
+    id_cita_global = idCita;
+    abrirModal();
+
+}
+
+function abrirModal() {
+  var myModal = new bootstrap.Modal(document.getElementById('expedienteModal'), {});
+  myModal.show();
+}
+
+async function enviarExpediente() {
+      let idCita = id_cita_global;
+      let padecimiento = document.getElementById('txtPadecimiento').value;
+      let procedimiento = document.getElementById('txtProcedimiento').value;
+      let medicamentos = document.getElementById('txtMedicamentos').value;
+
+      const data = {
+                      idCita: idCita,
+                      padecimiento: padecimiento,
+                      procedimiento: procedimiento,
+                      medicamentos: medicamentos
+      };
+
+      const request = await fetch('medico/escribirExpediente', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+      });
 }

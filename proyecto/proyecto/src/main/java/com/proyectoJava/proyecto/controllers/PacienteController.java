@@ -41,12 +41,12 @@ public class PacienteController {
     }
 
     /****** Funciones *********/
-    @RequestMapping(value = "/paciente/{id_cita_disponible}/sacarcita", method = RequestMethod.POST)
+    @RequestMapping(value = "paciente/{id_cita_disponible}/sacarcita", method = RequestMethod.POST)
     public void sacarCita(@PathVariable Integer id_cita_disponible) {
         pacienteDao.sacarCita(UsuarioActivo.getCedula(), id_cita_disponible);
     }
 
-    @RequestMapping(value = "/paciente/{id_cita}/cancelarcita", method = RequestMethod.POST)
+    @RequestMapping(value = "paciente/{id_cita}/cancelarcita", method = RequestMethod.POST)
     public void cancelarCita(@PathVariable Integer id_cita) {
         pacienteDao.cancelarCita(id_cita);
     }

@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -71,6 +72,47 @@ public class MedicoDaoImp implements MedicoDao {
             }
             return false;
         }
+    }
+
+    @Override
+    public boolean referirPaciente(Integer cedula, Integer idCitaDisponible) {
+        Paciente paciente = entityManager.find(Paciente.class, cedula);
+        if (paciente == null){
+            return false;
+        }
+        CitaDisponible citaDisponible = entityManager.find(CitaDisponible.class, idCitaDisponible);
+
+        CitaAgendada citaAgendada = new CitaAgendada();
+
+        citaAgendada.setPaciente(paciente);
+        citaAgendada.setMedico(citaDisponible.getMedico());
+        citaAgendada.setFecha(citaDisponible.getFecha());
+        citaAgendada.setHora(citaDisponible.getHora());
+
+        entityManager.merge(citaAgendada);
+        entityManager.remove(citaDisponible);
+        return true;
+    }
+
+    @Override
+    public void escribirExpediente(Integer idCita, String padecimiento, String procedimiento, String medicamentos) {
+        CitaAgendada citaAgendada = entityManager.find(CitaAgendada.class, idCita);
+        if(citaAgendada == null || padecimiento == "" || procedimiento == "" || medicamentos == "") {
+            return;
+        }
+        Paciente paciente = citaAgendada.getPaciente();
+        LocalDate fecha = citaAgendada.getFecha();
+
+        Expediente expediente = new Expediente();
+
+        expediente.setPaciente(paciente);
+        expediente.setFecha(fecha);
+        expediente.setPadecimiento(padecimiento);
+        expediente.setProcedimiento(procedimiento);
+        expediente.setMedicamentos(medicamentos);
+
+        entityManager.merge(expediente);
+        entityManager.remove(citaAgendada);
     }
 
 }

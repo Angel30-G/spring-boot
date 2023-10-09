@@ -47,4 +47,25 @@ public class MedicoController {
 
         return medicoDao.iniciarSesionMedico(cedula, contrasena);
     }
+
+    @RequestMapping(value = "medico/referirpaciente", method = RequestMethod.POST)
+    public boolean referirPaciente(@RequestBody Map<String, String> datosCita) {
+        Integer cedula = Integer.parseInt(datosCita.get("cedula"));
+        Integer id_cita_disponible = Integer.parseInt(datosCita.get("id_cita_disponible"));
+
+        return medicoDao.referirPaciente(cedula, id_cita_disponible);
+    }
+
+
+
+    @RequestMapping(value = "medico/escribirExpediente", method = RequestMethod.POST)
+    public void escribirExpediente(@RequestBody Map<String, String> datosExpediente) {
+
+        Integer idCita = Integer.parseInt(datosExpediente.get("idCita"));
+        String padecimiento = datosExpediente.get("padecimiento");
+        String procedimiento = datosExpediente.get("procedimiento");
+        String medicamentos = datosExpediente.get("medicamentos");
+
+        medicoDao.escribirExpediente(idCita, padecimiento, procedimiento, medicamentos);
+    }
 }
