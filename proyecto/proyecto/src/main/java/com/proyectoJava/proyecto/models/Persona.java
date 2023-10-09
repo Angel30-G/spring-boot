@@ -10,7 +10,7 @@ import javax.persistence.*;
 @ToString @EqualsAndHashCode
 @Getter
 @Setter
-public class Persona {
+public class Persona {/*Representa a la tabla persona de la base de datos, es superclase de Paciente y Medico*/
 
     @Id
     @Column(name = "cedula")

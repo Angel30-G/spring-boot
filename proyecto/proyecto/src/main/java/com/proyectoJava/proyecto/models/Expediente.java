@@ -11,6 +11,9 @@ import javax.persistence.*;
 @ToString
 @Getter
 @Setter
+/*Representa a la tabla expediente de la base de datos,
+hay un expediente por cada cita en la que el paciente fue atendido
+y contiene detalles sobre la atencion de esa cita*/
 public class Expediente {
 
     @Id
@@ -18,6 +21,7 @@ public class Expediente {
     @Column(name = "id_expediente")
     private Integer id_expediente;
 
+    //Se asocian los expedientes a un paciente
     @ManyToOne
     @JoinColumn(name = "cedula")
     private Paciente paciente;

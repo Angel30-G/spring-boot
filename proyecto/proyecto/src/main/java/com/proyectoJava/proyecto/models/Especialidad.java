@@ -14,6 +14,7 @@ import java.util.List;
 @EqualsAndHashCode
 @Getter
 @Setter
+/*Representa a la tabla especialidad de la base de datos y tiene una relacion de uno a muchos con medico*/
 public class Especialidad {
 
     @Id

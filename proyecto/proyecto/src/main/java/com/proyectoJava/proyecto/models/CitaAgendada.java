@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @EqualsAndHashCode
+/*Representa la tabla CitaAgendada de la base de datos y representa las citas que ya fueron agendadas*/
 public class CitaAgendada {
 
     @Id

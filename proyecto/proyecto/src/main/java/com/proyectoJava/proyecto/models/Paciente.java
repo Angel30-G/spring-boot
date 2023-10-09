@@ -11,6 +11,7 @@ import java.util.List;
 @Table(name = "paciente")
 @ToString
 @PrimaryKeyJoinColumn(referencedColumnName = "cedula")
+/*Representa a la tabla Paciente de la base de datos, es subclase de Persona*/
 public class Paciente extends Persona {
 
     @Getter @Setter @Column(name = "contrasena")

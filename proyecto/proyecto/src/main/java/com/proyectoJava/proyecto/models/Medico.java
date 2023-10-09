@@ -13,6 +13,7 @@ import java.util.List;
 @ToString
 @Getter
 @Setter
+/*Representa a la tabla Paciente de la base de datos, es subclase de Persona*/
 public class Medico extends Persona {
 
     @Column(name = "contrasena")
