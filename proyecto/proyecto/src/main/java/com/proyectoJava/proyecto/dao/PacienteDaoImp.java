@@ -15,17 +15,20 @@ public class PacienteDaoImp implements PacienteDao {
     @PersistenceContext
     EntityManager entityManager;
 
+    //Retorna todos los pacientes por medio de la cedula
     @Override
     public Paciente getPaciente(Integer cedula) {
         return entityManager.find(Paciente.class, cedula);
     }
 
+    //Retorna la lista de pacientes guardados en la base de datos
     @Override
     public List<Paciente> getPacientes() {
         String query = "FROM Paciente";
         return entityManager.createQuery(query, Paciente.class).getResultList();
     }
 
+    //Retorna una lista de expedientes utilizando la base de datos
     @Override
     public List<Expediente> getPacienteExpediente(Integer cedula) {
         String query = "SELECT e FROM Expediente e WHERE e.paciente.cedula = :cedula";
@@ -34,17 +37,20 @@ public class PacienteDaoImp implements PacienteDao {
                 .getResultList();
     }
 
+    //Guarda un paciente utilizando un merge para agregarlo a la base de datos
     @Override
     public void guardar(Paciente paciente) {
         entityManager.merge(paciente);
     }//Hace insert o update a BD
 
+    //Elimina un paciente de la base de datos
     @Override
     public void eliminar(Integer cedula) {
         Paciente paciente = entityManager.find(Paciente.class, cedula);
         entityManager.remove(paciente);
     }
 
+    //Retorna una lista de citas agendadas llamandola desde la base de datos
     @Override
     public List<CitaAgendada> citasAgendadas(Integer cedula){
         String query = "SELECT ca FROM CitaAgendada ca WHERE ca.paciente.cedula = :cedula";
@@ -53,12 +59,14 @@ public class PacienteDaoImp implements PacienteDao {
                 .getResultList();
     }
 
+    //Retorna la lista de citas disponibles
     @Override
     public List<CitaDisponible> citasDisponibles(){
         String query = "SELECT cd FROM CitaDisponible cd WHERE cd.medico.especialidad.id_especialidad = 1";
         return entityManager.createQuery(query, CitaDisponible.class).getResultList();
     }
 
+    //Permite sacar una cita que este disponible y reservarla
     @Override
     public void sacarCita(Integer cedula, Integer id_cita_disponible) {
         Paciente paciente = entityManager.find(Paciente.class, cedula);
@@ -76,6 +84,7 @@ public class PacienteDaoImp implements PacienteDao {
 
     }
 
+    //Permite cancelar una cita y desocupar el espacio
     @Override
     public void cancelarCita(Integer id_cita) {
         CitaAgendada citaAgendada = entityManager.find(CitaAgendada.class, id_cita);
@@ -89,6 +98,7 @@ public class PacienteDaoImp implements PacienteDao {
         entityManager.remove(citaAgendada);
     }
 
+    //Verifica que se haya iniciado sesión correctamente como paciente
     @Override
     public boolean iniciarSesionPaciente(Integer cedula, String contrasena) {
         Paciente paciente = entityManager.find(Paciente.class, cedula);
